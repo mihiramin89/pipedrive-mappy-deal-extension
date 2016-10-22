@@ -1,0 +1,158 @@
+@import url(https://fonts.googleapis.com/css?family=Raleway);
+
+.modal h3, label, input[type="button"] {
+    background-color: #FFF; /* Black w/ opacity */
+    color: #20519A;
+}
+h3, h4 {
+    margin: 0px;
+    white-space: nowrap;
+}
+
+input[type="button"] {
+    color: #20519A;
+    margin-top: 10px;
+    border-radius: 3px;
+    border-color: #20519A;
+}
+
+hr {
+    border-color: #20519A;
+
+}
+
+.dropdown, .inline-dropdown {
+    display: none;
+    margin-left: 5px;
+    left: auto;
+    border-color: transparent;
+    border-style: dashed dashed solid;
+    border-width: 0 8px 8px;
+    position: absolute;
+    z-index: 11;
+    height: 0;
+    width: 0;
+    -webkit-animation: gb__a .2s;
+    animation: gb__a .2s;
+    border-bottom-color: #fff;
+    top: 36px;
+}
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 10; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 25%; /* Full width */
+    height: 120px; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: #FFF; /* Black w/ opacity */
+    border-radius: 2px;
+    -webkit-border-radius: 2px;
+    -webkit-user-select: text;
+    box-shadow:0 2px 10px rgba(0,0,0,.2);
+    border-color:rgba(0,0,0,.2);
+    border: 1px solid #ccc;
+    -webkit-animation: gb__a .2s;
+}
+
+/* Modal Content */
+.modal-content, 
+.inline-modal-content {
+    background-color: #FFF;
+    margin: auto;
+    padding: 5px;
+    /*border: 1px solid #888;*/
+    width: 80%;
+    color: #20519A;
+    text-align: center;
+}
+
+.inline-modal-content {
+    margin: auto 25px;
+}
+
+/* The Close Button */
+.close, .inline-close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 19px;
+    font-weight: bold;
+    margin-top:3px;
+    margin-right:3px;
+    width:15px;
+    height:15px;
+}
+
+.close:hover, .inline-close:hover,
+.close:focus, .inline-close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+input[type="button"]:hover {
+    background-color: #20519A;
+    color: #fff;
+}
+
+.inline-popup {
+	display: inline-block;
+	position: fixed;
+	float:right;
+}
+
+.inline-modal-content {
+    background-color: #20519A;
+    color: #fff;
+}
+
+.inline-modal hr {
+    border-color: #fff;
+}
+
+#listForm {
+    font-size:15px;
+}
+
+.inline-modal
+{
+    display: none;
+	position: fixed;
+	color: #FFF;
+	background-color: #20519A;
+	z-index: 10;
+    overflow: auto; /* Enable scroll if needed */
+    border-radius: 2px;
+    -webkit-border-radius: 2px;
+    -webkit-user-select: text;
+    box-shadow:0 2px 10px rgba(0,0,0,.2);
+    border-color:rgba(0,0,0,.2);
+    border: 1px solid #ccc;
+    -webkit-animation: gb__a .2s;
+}
+
+input[type="radio"] {
+    margin: 3px;
+}
+
+input[type=text] {
+    width: 130px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    background-color: white;
+    background-image: url('searchicon.png');
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+}
+
+input[type=text]:focus {
+    width: 100%;
+}
+
+ 
