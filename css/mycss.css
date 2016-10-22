@@ -104,6 +104,10 @@ input[type="button"]:hover {
 	float:right;
 }
 
+.inline-dropdown {
+    border-bottom-color: #20519A;
+}
+
 .inline-modal-content {
     background-color: #20519A;
     color: #fff;
