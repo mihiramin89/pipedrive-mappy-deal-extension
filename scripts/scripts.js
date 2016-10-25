@@ -78,9 +78,7 @@ function saveToken() {
 
 	chrome.runtime.sendMessage({fn:"setToken", token:PipedriveAPI_Token}, function(response){
 		console.log(response.success);
-		$(".modal").css("display", "none");
-		$(".dropdown").css("display", "none");
-		$(".dropdown-internal").css("display","none");
+		closeModalWindow(null);
 	});
 }
 
@@ -128,8 +126,6 @@ function grabEmail(){
 		for(i=0; i< toField.length; i++) {
 			if(toField[i].nodeName == "INPUT") {
 				console.log("grab email: " + toField[i].value);
-				//var searchField = document.getElementsByClassName("searchField");
-				//searchField.value = toField[i];
 				return toField[i].value;
 			}
 		}
@@ -196,7 +192,6 @@ function populateBCCField(event) {
 	var bccHTML = document.createElement("div");
 	bccHTML.className = "vR";
 	bccHTML.innerHTML = '<span class="vN bfK" email='+email+ '><div class="vT">'+ email + '</div><div class="vM pipe-close" email='+email+'></div></span><input name="bcc" type="hidden" value='+ email +'></div>';
-	//var bccHTML =//"<div class=\"vR\">
 	var fields = document.getElementsByName("bcc");
 	console.log("elements found: " + fields.length);
 	for(i=0; i< fields.length; i++) {
@@ -231,7 +226,7 @@ function generateSearchList(people, orgs, deals){
 	generateSearchItem(people,"icon-person",person_icon,unorderedList);
 	generateSearchItem(orgs,"icon-org",org_icon,unorderedList);
 	generateSearchItem(deals,"icon-deal",deal_icon,unorderedList);
-	
+
 	listDiv.innerHTML = unorderedList.outerHTML;
 
 	var items = document.getElementsByClassName("searchListItem")
