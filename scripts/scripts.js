@@ -228,24 +228,10 @@ function generateSearchList(people, orgs, deals){
 	var listDiv = document.getElementById("listForm");
 	listDiv.innerHTML = "";
 	var unorderedList = document.createElement("ul");
-	for(p=0; p < people.length; p++){
-		var link = document.createElement("li");
-		var linkHTML = '<a class="searchListItem" email='+ people[p].email +'><span email='+ people[p].email +' class="icon icon-person"><img  email='+ people[p].email +' id="mgt" src="'+person_icon+'"width="25" height="24"></span><strong email='+ people[p].email +'>' + people[p].name + '</strong><br /><small email='+ people[p].email +'>' + people[p].email + '</small><br /></a>';
-		link.innerHTML = linkHTML;
-		unorderedList.appendChild(link);
-	}
-	for(o=0; o < orgs.length; o++){
-		var link = document.createElement("li");
-		var linkHTML = '<a class="searchListItem" email='+ orgs[o].email +'><span  email='+ orgs[o].email +'class="icon icon-org"><img  email='+ orgs[o].email +' id="mgt" src="'+org_icon+'"width="25" height="24"></span><strong  email='+ orgs[o].email +'>' + orgs[o].name + '</strong><br /><small  email='+ orgs[o].email +'>' + orgs[o].email + '</small><br /></a>';
-		link.innerHTML = linkHTML;
-		unorderedList.appendChild(link);
-	}
-	for(d=0; d < deals.length; d++){
-		var link = document.createElement("li");
-		var linkHTML = '<a class="searchListItem" email='+ deals[d].email + '><span email='+ deals[d].email + 'class="icon icon-deal"><img  email='+ deals[d].email + ' id="mgt" src="'+deal_icon+'"width="25" height="24"></span><strong email='+ deals[d].email + '>' + deals[d].name + '</strong><br /><small email='+ deals[d].email + '>' + deals[d].email + '</small><br /></a>';
-		link.innerHTML = linkHTML;
-		unorderedList.appendChild(link);
-	}
+	generateSearchItem(people,"icon-person",person_icon,unorderedList);
+	generateSearchItem(orgs,"icon-org",org_icon,unorderedList);
+	generateSearchItem(deals,"icon-deal",deal_icon,unorderedList);
+	
 	listDiv.innerHTML = unorderedList.outerHTML;
 
 	var items = document.getElementsByClassName("searchListItem")
@@ -255,5 +241,15 @@ function generateSearchList(people, orgs, deals){
 			populateBCCField(e);
 			closeModalWindow(true);
 		}, true);
+	}
+}
+
+function generateSearchItem(items, iconClass, imageSrc,uList) {
+
+	for(i=0; i < items.length; i++){
+		var link = document.createElement("li");
+		var linkHTML = '<a class="searchListItem" email='+ items[i].email +'><span email='+ items[i].email +' class="icon '+iconClass+'"><img  email='+ items[i].email +' id="mgt" src="'+imageSrc+'"width="25" height="24"></span><strong email='+ items[i].email +'>' + items[i].name + '</strong><br /><small email='+ items[i].email +'>' + items[i].email + '</small><br /></a>';
+		link.innerHTML = linkHTML;
+		uList.appendChild(link);
 	}
 }
