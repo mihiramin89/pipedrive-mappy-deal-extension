@@ -21,23 +21,48 @@ hr {
 
 }
 
-.dropdown, .inline-dropdown {
+.dropdown, .invert-dropdown {
     display: none;
     margin-left: 5px;
     left: auto;
     border-color: transparent;
     border-style: dashed dashed solid;
-    border-width: 0 8px 8px;
     position: absolute;
     z-index: 11;
     height: 0;
     width: 0;
     -webkit-animation: gb__a .2s;
     animation: gb__a .2s;
-    border-bottom-color: #fff;
     top: 36px;
 }
+.dropdown {
+    border-width: 0 8px 8px;
+    border-bottom-color: rgba(0,0,0,.2);
+}
 
+
+.dropdown-internal, .invert-dropdown-internal {
+    border-color: transparent transparent rgb(255, 255, 255);
+    border-style: dashed dashed solid;
+    position: absolute;
+    z-index:12;
+    height:0;
+    width:0;
+    -webkit-animation: gb__a .2s;
+    animation: gb__a 0.2s;
+}
+.dropdown-internal {
+    border-width: 0 8px 8px;
+    border-bottom-color: #fff;
+}
+.invert-dropdown-internal {
+    border-width: 8px 8px 0;
+    border-top-color:#fff;
+}
+.invert-dropdown {
+    border-width: 8px 8px 0;
+    border-top-color:rgba(0,0,0,.2);;
+}
 /* The Modal (background) */
 .modal {
     display: none; /* Hidden by default */
@@ -99,18 +124,21 @@ input[type="button"]:hover {
 }
 
 .inline-popup {
-	display: inline-block;
-	position: fixed;
-	float:right;
+	display: block;
+	position: initial;
+	margin: -1px -1px;
+    overflow-y: hidden;
+    background-color:#f5f5f5;
+    border: 1px solid #cfcfcf;
 }
 
-.inline-dropdown {
-    border-bottom-color: #20519A;
+.inline-popup td.pipe-button:hover {
+    background-color:#ccc;
 }
 
 .inline-modal-content {
-    background-color: #20519A;
-    color: #fff;
+    background-color: #fff;
+    color: #20519A;
 }
 
 .inline-modal hr {
@@ -121,12 +149,13 @@ input[type="button"]:hover {
     font-size:15px;
 }
 
+
 .inline-modal
 {
     display: none;
 	position: fixed;
-	color: #FFF;
-	background-color: #20519A;
+	color: #20519A;
+	background-color: #fff;
 	z-index: 10;
     overflow: auto; /* Enable scroll if needed */
     border-radius: 2px;
@@ -143,7 +172,7 @@ input[type="radio"] {
 }
 
 input[type=text] {
-    width: 130px;
+    width: 60%;
     box-sizing: border-box;
     border: 2px solid #ccc;
     border-radius: 4px;
@@ -159,4 +188,55 @@ input[type=text]:focus {
     width: 100%;
 }
 
+.error {
+    display: none;
+    color:#FD6E61;
+}
  
+#listForm > a:hover {
+    background-color:#ccc;
+}
+
+.icon-person {
+    background-image: url('img/person.png');
+}
+.icon-deal {
+    background-image: url('img/deal.png');
+}
+.icon_org {
+    background-image: url('img/organization.png');
+}
+
+ul {
+    list-style: none;
+    display: block;
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    word-wrap: break-word;
+    overflow: hidden;
+}
+li > a {
+    display: block;
+    padding: 4px 4px 4px 38px;
+    color: #26292c;
+    text-decoration: none;
+    border-bottom: 1px #20519A solid;
+}
+li .icon {
+    position: absolute;
+    left: 6px;
+    top: 2px;
+    width: 24px;
+    height: 24px;
+}
+
+li:hover {
+    background-color:lightblue;
+}
