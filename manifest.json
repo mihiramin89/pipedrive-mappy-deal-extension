@@ -22,5 +22,5 @@
     "https://api.pipedrive.com/*",
     "storage" ],
 
-  "web_accessible_resources":["img/*.png"]
+  "web_accessible_resources":["img/*.svg"]
 }

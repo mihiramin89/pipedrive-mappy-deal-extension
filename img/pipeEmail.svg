@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="551 66 19 19">
+  <defs>
+    <style>
+      .cls-1 {
+        clip-path: url(#clip-iPhone_6_7_5);
+      }
+
+      .cls-2 {
+        fill: #fff;
+      }
+
+      .cls-3 {
+        fill: #20519a;
+        font-size: 13px;
+        font-family: HelveticaNeue, Helvetica Neue;
+      }
+    </style>
+    <clipPath id="clip-iPhone_6_7_5">
+      <rect x="551" y="66" width="19" height="19"/>
+    </clipPath>
+  </defs>
+  <g id="iPhone_6_7_5" data-name="iPhone 6/7 – 5" class="cls-1">
+    <circle id="ellipse-1" class="cls-2" cx="8" cy="8" r="8" transform="translate(552 68)"/>
+    <g id="group-3" transform="translate(543 56.132)">
+      <text id="P" class="cls-3" transform="translate(13.277 24)"><tspan x="0" y="0">P</tspan></text>
+    </g>
+  </g>
+</svg>

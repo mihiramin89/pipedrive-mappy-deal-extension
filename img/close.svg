@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="394 66 19 19">
+  <defs>
+    <style>
+      .cls-1 {
+        clip-path: url(#clip-iPhone_6_7_1);
+      }
+
+      .cls-2 {
+        fill: none;
+        stroke: #e63535;
+        stroke-width: 2px;
+      }
+    </style>
+    <clipPath id="clip-iPhone_6_7_1">
+      <rect x="394" y="66" width="19" height="19"/>
+    </clipPath>
+  </defs>
+  <g id="iPhone_6_7_1" data-name="iPhone 6/7 – 1" class="cls-1">
+    <g id="group-1" transform="translate(394 66)">
+      <line id="line-1" class="cls-2" x2="16" y2="16" transform="translate(1.5 1.5)"/>
+      <line id="line-1-2" data-name="line-1" class="cls-2" x2="16" y2="16" transform="translate(17.5 1.5) rotate(90)"/>
+    </g>
+  </g>
+</svg>

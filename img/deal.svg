@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="200 -748 19 19">
+  <defs>
+    <style>
+      .cls-1 {
+        clip-path: url(#clip-Artboard_3);
+      }
+
+      .cls-2 {
+        fill: #20519a;
+        stroke: #20519a;
+      }
+
+      .cls-2, .cls-3 {
+        stroke-width: 1px;
+      }
+
+      .cls-3 {
+        fill: #fff;
+        stroke: rgba(0,0,0,0);
+        font-size: 9px;
+        font-family: HelveticaNeue, Helvetica Neue;
+      }
+
+      .cls-4 {
+        stroke: none;
+      }
+
+      .cls-5 {
+        fill: none;
+      }
+    </style>
+    <clipPath id="clip-Artboard_3">
+      <rect x="200" y="-748" width="19" height="19"/>
+    </clipPath>
+  </defs>
+  <g id="Artboard_3" data-name="Artboard – 3" class="cls-1">
+    <g id="ellipse-2" class="cls-2" transform="translate(202 -746)">
+      <circle class="cls-4" cx="7.5" cy="7.5" r="7.5"/>
+      <circle class="cls-5" cx="7.5" cy="7.5" r="7"/>
+    </g>
+    <text id="_" data-name="$" class="cls-3" transform="translate(207 -735)"><tspan x="0" y="0">$</tspan></text>
+  </g>
+</svg>

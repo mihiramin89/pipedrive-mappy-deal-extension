@@ -2,11 +2,11 @@ var PipedriveAPI_Token;
 var timer;
 // var messageFrameTimer;
 var messageFrameCounter = 0;
-var logo=chrome.extension.getURL("img/pipeEmail.png");
-var close_icon=chrome.extension.getURL("img/close.png");
-var deal_icon = chrome.extension.getURL("img/deal.png");
-var org_icon = chrome.extension.getURL("img/organization.png");
-var person_icon = chrome.extension.getURL("img/person.png");
+var logo=chrome.extension.getURL("img/pipeEmail.svg");
+var close_icon=chrome.extension.getURL("img/close.svg");
+var deal_icon = chrome.extension.getURL("img/deal.svg");
+var org_icon = chrome.extension.getURL("img/organization.svg");
+var person_icon = chrome.extension.getURL("img/person.svg");
 
 $(document).ready(function() {   // Load the function after DOM ready
 	var headerIcons = document.getElementsByClassName("gb_tc");
