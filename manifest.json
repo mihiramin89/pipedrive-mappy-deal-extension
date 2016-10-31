@@ -2,7 +2,7 @@
 	"manifest_version": 2,
 
 	"name": "Pipedrive Gmail Integration",
-  	"description": "This extension uses your pipedrive key and ",
+  	"description": "This extension uses your pipedrive user token to search pipedrive and attach the email associated with the organization/person/deal that the email is for.",
   	"version": "1.0",
 
 

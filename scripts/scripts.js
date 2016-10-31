@@ -69,27 +69,10 @@ $(document).ready(function() {   // Load the function after DOM ready
 	messageFrameTimer = setInterval(countNewMessageFrames,200);
 	//click on compose and inject icon.
 	$(".T-I.J-J5-Ji.T-I-KE.L3").click(function(e) {
-	  // if(messageFrameCounter == 0){
-	  // 	messageFrameTimer = setInterval(countNewMessageFrames,200);
-	  // }
 	  timer = setInterval(inlineIcon, 500);
 	});
 	
 });
-
-function countNewMessageFrames(){
-	// messageFrameCounter = document.getElementsByClassName("nH Hd b4g-narrow").length;
-	// var newFrames = document.getElementsByClassName("nH Hd b4g-narrow");
-	// //var bccField = newFrames[0].getElementsByClassName("vO")[2];//get the bcc field count.
-
-	// for(i=0; i < (messageFrameCounter-1); i++){
-	//  	var frameDiv = newFrames[i];
-	//  	frameDiv.className += "pipe-frame"+i;
-	//  }
-	// if(messageFrameCounter === 0) {
-	// 	clearInterval(messageFrameTimer);
-	// }
-}
 
 function searchPipeDrive(event) {
 	if (event.keyCode === 13) {
