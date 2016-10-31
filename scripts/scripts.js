@@ -66,7 +66,6 @@ $(document).ready(function() {   // Load the function after DOM ready
 		closeModalWindow(true);
 	});
 
-	messageFrameTimer = setInterval(countNewMessageFrames,200);
 	//click on compose and inject icon.
 	$(".T-I.J-J5-Ji.T-I-KE.L3").click(function(e) {
 	  timer = setInterval(inlineIcon, 500);
