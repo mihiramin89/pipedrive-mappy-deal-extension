@@ -18,7 +18,9 @@
       "css": ["css/mycss.css"]
     }],
 
-    "permissions": [ "https://api.pipedrive.com/*" ],
+    "permissions": [ 
+    "https://api.pipedrive.com/*",
+    "storage" ],
 
   "web_accessible_resources":["img/*.png"]
 }

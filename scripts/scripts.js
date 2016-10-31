@@ -1,5 +1,7 @@
 var PipedriveAPI_Token;
 var timer;
+// var messageFrameTimer;
+var messageFrameCounter = 0;
 var logo=chrome.extension.getURL("img/pipeEmail.png");
 var close_icon=chrome.extension.getURL("img/close.png");
 var deal_icon = chrome.extension.getURL("img/deal.png");
@@ -7,11 +9,16 @@ var org_icon = chrome.extension.getURL("img/organization.png");
 var person_icon = chrome.extension.getURL("img/person.png");
 
 $(document).ready(function() {   // Load the function after DOM ready
-	var t1='<tr><td><div id="pop"><a href=""><img id="mgt" src="'+logo+'"width="25" height="24"></a></div></td></tr>'    //now set the src to absolute path.
-	$(".gb_ic.gb_vf.gb_R").prepend(t1);     //Insert extension icon into top-right corner of Gmail home.
-	
+	var headerIcons = document.getElementsByClassName("gb_tc");
+	var headerIconToolbar = headerIcons[0].parentElement.parentElement;
 
-	var keyHTML = '<div class="dropdown"></div><div class="dropdown-internal"></div><div class="modal"><img class="close" id="logo" src="'+close_icon+'"/><div class="modal-content" id="pop_inner"><h3>Enter Pipedrive API token</h3><hr /><input type="text" id="key" placeholder="key"/><br /><input type="button" id="keyInput" value="Save"/></div></div>'
+	var toolbarIconDiv = document.createElement("div");
+	toolbarIconDiv.className = "gb_ea gb_Ic gb_R";
+	toolbarIconDiv.id = "pop";
+	toolbarIconDiv.innerHTML = '<div class="gb_tc"><a href=""><img id="mgt" src="'+logo+'"width="25" height="24"></a></div>';
+	headerIconToolbar.insertAdjacentElement('afterbegin',toolbarIconDiv);
+
+	var keyHTML = '<div class="dropdown"></div><div class="dropdown-internal"></div><div class="modal"><img class="close" id="logo" src="'+close_icon+'"/><div class="modal-content" id="pop_inner"><h3>Enter Pipedrive API token</h3><hr /><input type="text" id="key" placeholder="key"/><br /><input type="button" id="keyInput" value="Save"/></div></div>';
 	$("body").append(keyHTML);
 
 	var errorDiv = '<div class="error"><h5>Failed to grab data for following reasons:</h5><ol><li>invalid email address</li><li>no deals associated with email address</li>invalid user api token<li></li></ol></div>';
@@ -44,6 +51,12 @@ $(document).ready(function() {   // Load the function after DOM ready
 		$(".dropdown-internal").css("top",e.clientY + 14);
 	});
 
+	chrome.storage.local.get("pipedriveToken", function(result){
+		PipedriveAPI_Token = result.pipedriveToken;
+		var tokenField= document.getElementById("key");
+		tokenField.value = result.pipedriveToken;
+	});
+
 	//hide the popup
 	$(".close").click(function() {
 		closeModalWindow(null);
@@ -53,11 +66,30 @@ $(document).ready(function() {   // Load the function after DOM ready
 		closeModalWindow(true);
 	});
 
+	messageFrameTimer = setInterval(countNewMessageFrames,200);
 	//click on compose and inject icon.
 	$(".T-I.J-J5-Ji.T-I-KE.L3").click(function(e) {
+	  // if(messageFrameCounter == 0){
+	  // 	messageFrameTimer = setInterval(countNewMessageFrames,200);
+	  // }
 	  timer = setInterval(inlineIcon, 500);
 	});
+	
 });
+
+function countNewMessageFrames(){
+	// messageFrameCounter = document.getElementsByClassName("nH Hd b4g-narrow").length;
+	// var newFrames = document.getElementsByClassName("nH Hd b4g-narrow");
+	// //var bccField = newFrames[0].getElementsByClassName("vO")[2];//get the bcc field count.
+
+	// for(i=0; i < (messageFrameCounter-1); i++){
+	//  	var frameDiv = newFrames[i];
+	//  	frameDiv.className += "pipe-frame"+i;
+	//  }
+	// if(messageFrameCounter === 0) {
+	// 	clearInterval(messageFrameTimer);
+	// }
+}
 
 function searchPipeDrive(event) {
 	if (event.keyCode === 13) {
@@ -66,8 +98,8 @@ function searchPipeDrive(event) {
             	console.log("search term: " + term);
             	chrome.runtime.sendMessage({fn:"searchData", searchTerm: term, token: PipedriveAPI_Token}, function(response) {
             		console.log("return from search term: " + response.data);
-            		generateSearchList(response.data.people, response.data.organizations, response.data.deals);
-            		
+            		var index = event.target.getAttribute("count");
+            		generateSearchList(response.data.people, response.data.organizations, response.data.deals, index);
             	});
             }
          }
@@ -76,6 +108,7 @@ function searchPipeDrive(event) {
 function saveToken() {
 	PipedriveAPI_Token = document.getElementById("key").value;
 
+	//chrome.storage.local.set({'pipedriveToken': PipedriveAPI_Token});
 	chrome.runtime.sendMessage({fn:"setToken", token:PipedriveAPI_Token}, function(response){
 		console.log(response.success);
 		closeModalWindow(null);
@@ -136,42 +169,46 @@ function grabEmail(){
 
 function inlineIcon() {
 	var toField = document.getElementsByClassName("aDj");
+	messageFrameCounter = document.getElementsByClassName("nH Hd b4g-narrow").length;
+	var newFrames = document.getElementsByClassName("nH Hd b4g-narrow")[messageFrameCounter-1];
+	newFrames.className += " pipeFrame"+ (messageFrameCounter-1);
+
 	console.log("elements found: " + toField.length);
 	if(toField !== undefined && toField !== null) {
 		clearInterval(timer);
 		console.log("timer cleared");
 
+
 		var divTag = document.createElement("div");
 		divTag.className = "inline-popup";
-		var iconTag = '<table style="width:100%;"><tbody><tr><td class="pipe-button"><a href=""><img id="mgt" src="'+logo+'"width="25" height="24"></a></td><td><input id="search-pipedrive" class="searchField" type="text" name="search" placeholder="Search Pipedrive.."></td></td></td></tr></tbody></table>';
+		var iconTag = '<table style="width:100%;"><tbody><tr><td class="pipe-button"><a href=""><img id="mgt" src="'+logo+'"width="25" height="24"></a></td><td><input id="search-pipedrive" count='+(messageFrameCounter-1)+' class="searchField" type="text" name="search" placeholder="Search Pipedrive.."></td></td></td></tr></tbody></table>';
 
 		divTag.innerHTML = iconTag;
 
 		console.log("to elements found " + toField.length);
-		var firstchild = toField[0].childNodes[0];
-		toField[0].insertBefore(divTag, toField[0].childNodes[0]);
-		document.getElementsByClassName('pipe-button')[0].addEventListener('click', function(e) {
+		var firstchild = toField[messageFrameCounter-1].childNodes[0];
+		toField[messageFrameCounter-1].insertBefore(divTag, firstchild);
+		document.getElementsByClassName('pipe-button')[messageFrameCounter-1].addEventListener('click', function(e) {
 			getPipeDriveData(e, undefined);
 			displayInlineModal(e, e.clientX, e.clientY);
 
 		});
-		document.getElementsByClassName('searchField')[0].addEventListener('keydown',function(e) {
+		document.getElementsByClassName('searchField')[messageFrameCounter-1].addEventListener('keydown',function(e) {
 			if(e.keyCode === 13) {
-				var div = document.getElementById("search-pipedrive");
-				var rect = div.getBoundingClientRect();
+				var rect = e.target.getBoundingClientRect();
 				var listForm = document.getElementById("listForm");
 				listForm.innerHTML = "";
 				searchPipeDrive(e);
 				displayInlineModal(e,rect.left, rect.top);
 			}
 		});
+
 	}else {
 		console.log("still timing");
 	}
 }
 
 function displayInlineModal(e, left, top){
-
 	$(".inline-modal").css("display","block");
 	$(".inline-modal").css("left",left);
 	$(".inline-modal").css("top",top-230);
@@ -186,25 +223,24 @@ function displayInlineModal(e, left, top){
 	$(".invert-dropdown-internal").css("top",top-29);
 }
 
-function populateBCCField(event) {
+function populateBCCField(event, index) {
 	console.log("place value in BCC of email");
 	var email = event.target.value;//grabs the email address for the deal.
 	var bccHTML = document.createElement("div");
 	bccHTML.className = "vR";
 	bccHTML.innerHTML = '<span class="vN bfK" email='+email+ '><div class="vT">'+ email + '</div><div class="vM pipe-close" email='+email+'></div></span><input name="bcc" type="hidden" value='+ email +'></div>';
-	var fields = document.getElementsByName("bcc");
-	console.log("elements found: " + fields.length);
-	for(i=0; i< fields.length; i++) {
-		if(fields[i].nodeName === "TEXTAREA"){
-			var parentNode = fields[i].parentNode;
-			parentNode.appendChild(bccHTML);
-			bccHTML.childNodes[0].childNodes[1].addEventListener('click', function(e){
-				//goto parentNode > parentNode and delete node
-				var pNode = e.target.parentNode.parentNode;
-				(pNode.parentNode).removeChild(pNode);
-			})
-		}
-	}	
+
+
+	var newFrames = document.getElementsByClassName("nH Hd b4g-narrow");
+	var bccField = newFrames[index].getElementsByClassName("vO")[2];//get the bcc field count.
+
+	var parentNode = bccField.parentNode;
+	parentNode.appendChild(bccHTML);
+	bccHTML.childNodes[0].childNodes[1].addEventListener('click', function(e){
+		//goto parentNode > parentNode and delete node
+		var pNode = e.target.parentNode.parentNode;
+		(pNode.parentNode).removeChild(pNode);
+	});	
 }
 
 function generateDealList(list) {
@@ -219,7 +255,7 @@ function generateDealList(list) {
 	}
 }
 
-function generateSearchList(people, orgs, deals){
+function generateSearchList(people, orgs, deals, index){
 	var listDiv = document.getElementById("listForm");
 	listDiv.innerHTML = "";
 	var unorderedList = document.createElement("ul");
@@ -229,11 +265,11 @@ function generateSearchList(people, orgs, deals){
 
 	listDiv.innerHTML = unorderedList.outerHTML;
 
-	var items = document.getElementsByClassName("searchListItem")
+	var items = document.getElementsByClassName("searchListItem");
 	for(e=0; e < items.length; e++) {
 		items[e].addEventListener('click', function(e) {
 			e.target.value = e.target.getAttribute('email');
-			populateBCCField(e);
+			populateBCCField(e, index);
 			closeModalWindow(true);
 		}, true);
 	}

@@ -13,6 +13,8 @@ var background = {
 	},
 	setToken: function(request, sender, sendResponse) {
 		this.token = request.token;
+
+		chrome.storage.local.set({'pipedriveToken': this.token});
 		sendResponse({success: "token saved"});
 	},
 	grabData: function(req, sender, sendResponse) {
@@ -35,8 +37,6 @@ var background = {
 		var result = [];
 
 		findPersonByName(req.searchTerm, req.token, sendResponse);
-		//data["organizations"] = findOrganizationByName(req.searchTerm, req.token);
-		//data["deals"] = findDealsByName(req.searchTerm, req.token);
 	}
 };
 
@@ -44,7 +44,7 @@ function grabDeals(id, token, sendResponse) {
 	var deals;
 	var d_email;
 	var d_name;
-	var request = "https://api.pipedrive.com/v1/persons/1/deals?start=0&status=open&api_token="+token;
+	var request = "https://api.pipedrive.com/v1/persons/"+id+"/deals?start=0&status=open&api_token="+token;
 	var xhr = new XMLHttpRequest();
 
 	
@@ -79,17 +79,18 @@ function findPersonByName(searchTerm, token, sendResponse) {
 	var xhr = new XMLHttpRequest();
 	var results = {};
 	var people = [];
-	//alert(request);
 	xhr.open("GET", request, true);
 	xhr.onreadystatechange = (function() {
 		if(xhr.readyState == 4) {
 			var resp = JSON.parse(xhr.responseText);
-			for(i=0; i<resp.data.length; i++) {
-				if(resp.data[i].email !== null){
-					var item = {};
-					item["name"] = resp.data[i].name;
-					item["email"] = resp.data[i].email;
-					people.push(item);
+			if(resp.data !== null){
+				for(i=0; i<resp.data.length; i++) {
+					if(resp.data[i].email !== null){
+						var item = {};
+						item["name"] = resp.data[i].name;
+						item["email"] = resp.data[i].email;
+						people.push(item);
+					}
 				}
 			}
 			results["people"] = people;
@@ -108,14 +109,16 @@ function findOrganizationsByName(searchTerm, token, sendResponse, results) {
 	xhr.onreadystatechange = (function() {
 		if(xhr.readyState == 4) {
 			var resp = JSON.parse(xhr.responseText);
-			for(i=0; i<resp.data.length; i++) {
-				if(resp.data[i].name !== null) {
-					item = {};
-					item["id"] = resp.data[i].id;
-					item["name"] = resp.data[i].name;
-					orgs_ids.push(item);
-				}
+			if(resp.data != null){
+				for(i=0; i<resp.data.length; i++) {
+					if(resp.data[i].name !== null) {
+						item = {};
+						item["id"] = resp.data[i].id;
+						item["name"] = resp.data[i].name;
+						orgs_ids.push(item);
+					}
 				
+				}
 			}
 			getOrgDetails(orgs_ids,token,sendResponse, results);
 		}
@@ -132,7 +135,7 @@ function getOrgDetails(ids, token, sendResponse, results) {
 		var request = 'https://api.pipedrive.com/v1/organizations/'+ids[i].id+':(cc_email)?api_token='+token;
 
 		xhr[i] = new XMLHttpRequest();
-		xhr[i].open("GET", request, true);
+		xhr[i].open("GET", request, false);
 		xhr[i].onreadystatechange = (function() {
 			if(xhr[i].readyState == 4){
 				var resp = JSON.parse(xhr[i].responseText);
@@ -141,7 +144,8 @@ function getOrgDetails(ids, token, sendResponse, results) {
 		});
 		xhr[i].send();
 	}
-    results["organizations"]=orgs;
+	
+	results["organizations"]=orgs;
 	sendResponse({data: results, success:true});
 	
 }
@@ -154,12 +158,14 @@ function findDealsByName(searchTerm, token, sendResponse, results) {
 	xhr.onreadystatechange = (function() {
 		if(xhr.readyState == 4) {
 			var resp = JSON.parse(xhr.responseText);
-			for(i=0; i<resp.data.length; i++) {
-				if(resp.data[i].email !== null) {
-					var item = {};
-					item["name"] = resp.data[i].title;
-					item["email"] = resp.data[i].cc_email;
-					deals.push(item);	
+			if(resp.data != null){
+				for(i=0; i<resp.data.length; i++) {
+					if(resp.data[i].email !== null) {
+						var item = {};
+						item["name"] = resp.data[i].title;
+						item["email"] = resp.data[i].cc_email;
+						deals.push(item);	
+					}
 				}
 			}
 			results["deals"]=deals;
