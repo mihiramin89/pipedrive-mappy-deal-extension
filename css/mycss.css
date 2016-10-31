@@ -21,6 +21,7 @@ hr {
 
 }
 
+
 .dropdown, .invert-dropdown {
     display: none;
     margin-left: 5px;
@@ -136,6 +137,9 @@ input[type="button"]:hover {
     background-color:#ccc;
 }
 
+.inline-popup td.pipe-button {
+    text-align: center;
+}
 .inline-modal-content {
     background-color: #fff;
     color: #20519A;
