@@ -22,32 +22,22 @@ $(document).ready(function() {   // Load the function after DOM ready
 function addListener(){
 	var replyButton = document.getElementsByClassName("gH acX")[0];
 	var messageBox = document.getElementsByClassName("amn")[0];
-	if(replyButton !== null && replyButton !== undefined){
-		if(!replyClickEventSet){
-			console.log("attaching click event for reply button");
-			replyButton.addEventListener('click',function(e){
-				console.log("reply button clicked");
-				timer.push(setInterval(inlineIcon,500));
-			});	
-			replyClickEventSet = true;
-		}
-		
-	}else{
-		replyClickEventSet = false;
-	}
 
-	if(messageBox !== null && messageBox !== undefined){
-		if(!messageBoxClickEventSet){
-			console.log("attaching click event for messagebox");
-			messageBox.addEventListener('click',function(e){
-				console.log("message box clicked");
+	replyClickEventSet = addListenerToElement(replyButton, replyClickEventSet);
+	messageBoxClickEventSet = addListenerToElement(messageBox, messageBoxClickEventSet);
+}
+
+function addListenerToElement(elem, isClickEventSet){
+	if(elem !== null & elem !== undefined){
+		if(!isClickEventSet){
+			elem.addEventListener('click',function(e){
+				console.log(elem+ " clicked");
 				timer.push(setInterval(inlineIcon,500));
 			});
-			messageBoxClickEventSet = true;
+			return true;
 		}
-	}else {
-		messageBoxClickEventSet = false;
 	}
+	return false;
 }
 
 function inlineIcon() {
