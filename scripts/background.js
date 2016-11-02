@@ -1,17 +1,3 @@
-var HttpRequest = {
-	sendRequest:function(request, IsASynchronous, responseFunction){
-		var xhr = new XMLHttpRequest();
-		xhr.open("GET",request,IsASynchronous);
-		xhr.onreadystatechange = (function(){
-			if(xhr.readyState == 4) {
-				var resp = JSON.parse(xhr.responseText);
-				responseFunction(resp);
-			}
-		});
-		xhr.send();
-	}
-};
-
 var background = {
 
 	token: "",
@@ -35,17 +21,10 @@ var background = {
 		var email = req.email;
 		var token = req.token;
 		var request = "https://api.pipedrive.com/v1/persons/find?term="+email+"&start=0&search_by_email=1&api_token="+token;
-		var xhr = new XMLHttpRequest();
-		var id;
-		var result;
-		xhr.open("GET", request, true);
-		xhr.onreadystatechange = (function() {
-			if(xhr.readyState == 4) {
-				var resp = JSON.parse(xhr.responseText);
-				grabDeals(resp.data[0].id,token, sendResponse);
-			}
+		
+		HttpRequest.sendRequest(request,true,function(resp){
+			grabDeals(resp.data[0].id,token, sendResponse);
 		});
-		xhr.send();
 	},
 	searchData: function(req, sender, sendResponse) {
 		var result = [];
@@ -55,21 +34,11 @@ var background = {
 };
 
 function grabDeals(id, token, sendResponse) {
-	var deals;
-	var d_email;
-	var d_name;
 	var request = "https://api.pipedrive.com/v1/persons/"+id+"/deals?start=0&status=open&api_token="+token;
 	var xhr = new XMLHttpRequest();
-
-	
-	xhr.open("GET", request, true);
-	xhr.onreadystatechange = (function() {
-		if(xhr.readyState == 4) {
-			var resp = JSON.parse(xhr.responseText);
-			generateListJSON(resp.data, sendResponse); //resp.data;
-		}
+	HttpRequest.sendRequest(request,true,function(resp){
+		generateListJSON(resp.data, sendResponse); //resp.data;
 	});
-	xhr.send();
 }
 
 function generateListJSON(data, sendResponse) {
@@ -106,7 +75,6 @@ function findPersonByName(searchTerm, token, sendResponse) {
 	});
 }
 
-//get details of an organization (cc_email): 
 function findDealsByName(searchTerm, token, sendResponse, results) {
 	var request = "https://api.pipedrive.com/v1/deals/find?term="+searchTerm+"&api_token="+token;
 	var deals = [];	

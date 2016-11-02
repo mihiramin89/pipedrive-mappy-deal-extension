@@ -7,14 +7,22 @@
 
 
   	"background": {
-  		"scripts": [ "scripts/background.js"],
+  		"scripts": [ "scripts/HttpRequest.js","scripts/background.js"],
   		"persistent": false
   	},
 
   	"content_scripts": [
     {
       "matches": ["https://mail.google.com/*"],
-      "js": ["scripts/jquery-3.1.1.min.js","scripts/scripts.js"],
+      "js": [
+         "scripts/jquery-3.1.1.min.js", 
+         "scripts/client_globals.js",
+         "scripts/ModalWindow.js",
+         "scripts/pipeDriveHeader.js",
+         "scripts/pipeToolbar.js",
+         "scripts/pipeList.js",
+         "scripts/scripts.js"
+      ],
       "css": ["css/mycss.css"]
     }],
 

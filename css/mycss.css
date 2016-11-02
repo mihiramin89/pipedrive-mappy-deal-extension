@@ -22,7 +22,7 @@ hr {
 }
 
 
-.dropdown, .invert-dropdown {
+.dropdown, .inline-dropdown {
     display: none;
     margin-left: 5px;
     left: auto;
@@ -42,7 +42,7 @@ hr {
 }
 
 
-.dropdown-internal, .invert-dropdown-internal {
+.dropdown-internal, .inline-dropdown-internal {
     border-color: transparent transparent rgb(255, 255, 255);
     border-style: dashed dashed solid;
     position: absolute;
@@ -56,11 +56,11 @@ hr {
     border-width: 0 8px 8px;
     border-bottom-color: #fff;
 }
-.invert-dropdown-internal {
+.inline-dropdown-internal {
     border-width: 8px 8px 0;
     border-top-color:#fff;
 }
-.invert-dropdown {
+.inline-dropdown {
     border-width: 8px 8px 0;
     border-top-color:rgba(0,0,0,.2);;
 }
@@ -193,11 +193,11 @@ input[type=text]:focus {
 }
 
 .error {
-    display: none;
+    display: block;
     color:#FD6E61;
 }
  
-#listForm > a:hover {
+#listForm > :not(.error)  a:hover {
     background-color:#ccc;
 }
 
@@ -218,7 +218,7 @@ ul {
     padding: 0;
 }
 
-li {
+ul > li {
     list-style: none;
     margin: 0;
     padding: 0;
@@ -226,14 +226,14 @@ li {
     word-wrap: break-word;
     overflow: hidden;
 }
-li > a {
+ul > li > a {
     display: block;
     padding: 4px 4px 4px 38px;
     color: #26292c;
     text-decoration: none;
     border-bottom: 1px #20519A solid;
 }
-li .icon {
+ul >  li .icon {
     position: absolute;
     left: 6px;
     top: 2px;
@@ -241,6 +241,9 @@ li .icon {
     height: 24px;
 }
 
-li:hover {
+ul > li:hover {
     background-color:lightblue;
+}
+ol {
+    text-align: left;
 }
