@@ -54,7 +54,7 @@ function inlineIcon() {
 	//reply/reply all / forward to message check class: gB acO
 	var newMessageCounter = 0;
 	var threadMessageCounter = 0;
-	messageFrameCounter = (document.getElementsByClassName("nH Hd").length) + (document.getElementsByClassName("gB acO").length);//zero based array, so last element is one smaller than the length
+	messageFrameCounter = (document.getElementsByClassName("nH Hd").length) + (document.getElementsByClassName("aoI").length);//zero based array, so last element is one smaller than the length
 
 	if(messageFrameCounter > 0) {
 		newMessageCounter = document.getElementsByClassName("nH Hd").length;
@@ -70,7 +70,7 @@ function inlineIcon() {
 
 		threadMessageCounter = document.getElementsByClassName("gB acO").length;
 		for(j=0; j< threadMessageCounter; j++){
-			var newFrames = document.getElementsByClassName("gB acO")[j];
+			var newFrames = document.getElementsByClassName("aoI")[j];
 			var toField = document.getElementsByClassName("aDj");
 
 			if((newFrames.className).indexOf(" inline-pipeFrame"+j) === -1){
