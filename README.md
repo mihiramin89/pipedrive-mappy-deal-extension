@@ -2,8 +2,7 @@
 A google chrome extension for connecting pipedrive to gmail. Automatically pull in pipe drive deal email address when composing an email.
 
 
-# Setup
-In order for this extension to work, the following steps need to be done. 
+## Setup
 1. Grab your personal pipedrive API token by logging into your pipedrive account > Settings > API
 2. Enable the extension
 3. Navigate to your google mail
@@ -11,7 +10,7 @@ In order for this extension to work, the following steps need to be done.
 5. Paste in your personal pipedrive API token into the field and click save. 
 6. Now you will be able to search pipedrive for any deals/companies/people and attach the associated email address to your email.
 
-# Instructions
+## Instructions
 1. Make sure the setup steps are all completed.
 2. Create an email message to send, that should be associated with a person/deal/company on pipedrive.
 3. Using the pipedrive toolbar that appears inside the new message frame (toolbar above the send button) search for pipedrive information to associate with this email.
@@ -19,6 +18,7 @@ In order for this extension to work, the following steps need to be done.
 5. add more emails, or click close icon to exit popup modal.
 
 
+##License
 The MIT License (MIT)
 Copyright (c) 2016
 
