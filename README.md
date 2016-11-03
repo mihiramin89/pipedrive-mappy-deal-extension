@@ -1,5 +1,5 @@
 # pipedrive-mappy-deal-extension
-A google chrome extension for connecting pipedrive to gmail.  Gives the ability to pull in pipe drive deal email address when composing an email.
+A Google chrome extension for connecting Gmail to your Pipedrive account. Automatically connect email conversations to a specific deal in Pipedrive from directly within your compose window in Gmail.
 
 
 ## Setup
