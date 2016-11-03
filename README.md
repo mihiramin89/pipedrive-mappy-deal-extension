@@ -17,8 +17,10 @@ A google chrome extension for connecting pipedrive to gmail. Automatically pull 
 4. After list is generated, click on item in list. The email associated with that email is added to the bcc field of email.
 5. add more emails, or click close icon to exit popup modal.
 
+## Author
+Mihir Amin
 
-##License
+## License
 The MIT License (MIT)
 Copyright (c) 2016
 
