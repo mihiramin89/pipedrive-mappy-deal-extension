@@ -8,8 +8,9 @@ $(document).ready(function() {   // Load the function after DOM ready
 	pipeDriveHeader.init();
 	pipeToolbar.initModalWindow();
 
+	var composeMessageClassName = ".T-I.J-J5-Ji.T-I-KE.L3";
 	//click on compose and inject icon.
-	$(".T-I.J-J5-Ji.T-I-KE.L3").click(function(e) {
+	$(composeMessageClassName).click(function(e) {
 	  timer.push(setInterval(inlineIcon, 500));
 	  console.log("timer value: " + timer);
 	});
@@ -44,12 +45,12 @@ function inlineIcon() {
 	//reply/reply all / forward to message check class: gB acO
 	var newMessageCounter = 0;
 	var threadMessageCounter = 0;
-	messageFrameCounter = (document.getElementsByClassName("nH Hd").length) + (document.getElementsByClassName("aoI").length);//zero based array, so last element is one smaller than the length
+	messageFrameCounter = (document.getElementsByClassName(MessageFrameClassName).length) + (document.getElementsByClassName(InlineMessageFrameClassName).length);//zero based array, so last element is one smaller than the length
 
 	if(messageFrameCounter > 0) {
-		newMessageCounter = document.getElementsByClassName("nH Hd").length;
+		newMessageCounter = document.getElementsByClassName(MessageFrameClassName).length;
 		for(i=0; i < newMessageCounter; i++){
-			var newFrames = document.getElementsByClassName("nH Hd")[i];
+			var newFrames = document.getElementsByClassName(MessageFrameClassName)[i];
 			var toField = document.getElementsByClassName("aDj");
 
 			if((newFrames.className).indexOf(" pipeFrame"+i) === -1){
@@ -60,7 +61,7 @@ function inlineIcon() {
 
 		threadMessageCounter = document.getElementsByClassName("gB acO").length;
 		for(j=0; j< threadMessageCounter; j++){
-			var newFrames = document.getElementsByClassName("aoI")[j];
+			var newFrames = document.getElementsByClassName(InlineMessageFrameClassName)[j];
 			var toField = document.getElementsByClassName("aDj");
 
 			if((newFrames.className).indexOf(" inline-pipeFrame"+j) === -1){

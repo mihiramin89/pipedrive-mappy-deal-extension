@@ -1,4 +1,6 @@
 var PipedriveAPI_Token;
+var MessageFrameClassName = "nH Hd";
+var InlineMessageFrameClassName = "aoI";
 
 
 var logo=chrome.extension.getURL("img/pipeEmail.svg");

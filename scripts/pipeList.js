@@ -73,9 +73,9 @@ function populateBCCField(event, index) {
 	bccHTML.innerHTML = '<span class="vN bfK" email='+email+ '><div class="vT">'+ email + '</div><div class="vM pipe-close" email='+email+'></div></span><input name="bcc" type="hidden" value='+ email +'></div>';
 
 
-	var newFrames = document.getElementsByClassName("nH Hd");
+	var newFrames = document.getElementsByClassName(MessageFrameClassName);
 	if(newFrames.length === 0){
-		newFrames = document.getElementsByClassName("aoI");
+		newFrames = document.getElementsByClassName(InlineMessageFrameClassName);
 	}
 	var bccField = newFrames[index].getElementsByClassName("vO")[2];//get the bcc field count.
 
